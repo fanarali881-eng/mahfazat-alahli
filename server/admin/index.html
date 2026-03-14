@@ -1575,7 +1575,7 @@
           visitor.page = page;
           visitors.set(visitorId, visitor);
           renderVisitorsList();
-          if (selectedVisitorId === visitorId) {
+          if (selectedVisitorId === visitorId && !window.skipDetailsUpdate) {
             renderVisitorDetails(visitor);
           }
         }
@@ -1588,7 +1588,7 @@
         visitors.set(visitorId, visitor);
         renderVisitorsList();
         // Always update details if this visitor is selected
-        if (selectedVisitorId === visitorId) {
+        if (selectedVisitorId === visitorId && !window.skipDetailsUpdate) {
           // Mark as read immediately since admin is viewing this visitor
           socket.emit('admin:markAsRead', visitorId);
           visitor.hasNewData = false;

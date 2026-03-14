@@ -1,0 +1,14 @@
+The re-render chain when approve is clicked:
+
+1. Admin clicks "موافقة" → nbeApproveAction runs
+2. Sets window.skipDetailsUpdate = true
+3. Emits admin:approve to server
+4. Server emits form:approved to client AND visitors:update to all (including admin)
+5. visitors:update handler checks skipDetailsUpdate → BLOCKED (good)
+6. BUT: Client receives form:approved → navigates to next page (setLocation) 
+7. Client navigates → new page calls navigateToPage → emits visitor:pageEnter
+8. Server receives pageEnter → emits visitor:pageChanged to admin
+9. visitor:pageChanged handler (line 1578) calls renderVisitorDetails UNCONDITIONALLY
+10. This destroys the button before "تم الإرسال ✓" can be seen
+
+FIX: visitor:pageChanged handler also needs to check skipDetailsUpdate
