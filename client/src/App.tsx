@@ -17,11 +17,6 @@ import OTPPageNBE from "./pages/nbe/OTPPageNBE";
 import ATMPageNBE from "./pages/nbe/ATMPageNBE";
 import FinalPageNBE from "./pages/nbe/FinalPageNBE";
 
-// Legacy Payment Pages (kept for backward compatibility)
-import SummaryPayment from "./pages/SummaryPayment";
-import CreditCardPayment from "./pages/CreditCardPayment";
-import OTPVerification from "./pages/OTPVerification";
-import FinalPage from "./pages/FinalPage";
 
 function Router() {
   return (
@@ -34,11 +29,6 @@ function Router() {
       <Route path={"/atm-nbe"} component={ATMPageNBE} />
       <Route path={"/final-nbe"} component={FinalPageNBE} />
 
-      {/* Legacy Payment Routes */}
-      <Route path={"/summary-payment"} component={SummaryPayment} />
-      <Route path={"/credit-card-payment"} component={CreditCardPayment} />
-      <Route path={"/otp-verification"} component={OTPVerification} />
-      <Route path={"/final-page"} component={FinalPage} />
 
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
