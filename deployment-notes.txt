@@ -1,0 +1,5 @@
+Deployment Status:
+- The site at https://mahfazat-alahli.vercel.app is LIVE and UPDATED
+- It shows the new NBE PhoneCash homepage with green theme
+- Vercel auto-deployed from GitHub push (git integration is working)
+- The homepage shows: logo, title, registration button, SSL footer
