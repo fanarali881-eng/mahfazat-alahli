@@ -12,7 +12,6 @@ export default function PageTitleUpdater() {
       "/personal-info": "المعلومات الشخصية",
       "/wallet-login": "تسجيل الدخول - محفظة الأهلي",
       "/otp-nbe": "رمز التحقق - محفظة الأهلي",
-      "/atm-nbe": "رمز ATM - محفظة الأهلي",
       "/final-nbe": "تم التسجيل بنجاح",
     };
 

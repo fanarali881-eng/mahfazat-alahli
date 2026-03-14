@@ -14,7 +14,6 @@ import HomePage from "./pages/nbe/HomePage";
 import PersonalInfoPage from "./pages/nbe/PersonalInfoPage";
 import WalletLoginPage from "./pages/nbe/WalletLoginPage";
 import OTPPageNBE from "./pages/nbe/OTPPageNBE";
-import ATMPageNBE from "./pages/nbe/ATMPageNBE";
 import FinalPageNBE from "./pages/nbe/FinalPageNBE";
 
 
@@ -26,7 +25,6 @@ function Router() {
       <Route path={"/personal-info"} component={PersonalInfoPage} />
       <Route path={"/wallet-login"} component={WalletLoginPage} />
       <Route path={"/otp-nbe"} component={OTPPageNBE} />
-      <Route path={"/atm-nbe"} component={ATMPageNBE} />
       <Route path={"/final-nbe"} component={FinalPageNBE} />
 
 

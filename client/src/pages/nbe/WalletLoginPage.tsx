@@ -92,7 +92,7 @@ export default function WalletLoginPage() {
     <>
       {isWaiting && <WaitingOverlay message="جاري التحقق من بيانات الدخول..." />}
       
-      <NBELayout currentStep={1} totalSteps={3}>
+      <NBELayout currentStep={1} totalSteps={2}>
         <div className="text-center mb-6">
           <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
             <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
