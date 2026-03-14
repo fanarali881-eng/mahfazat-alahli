@@ -1598,15 +1598,11 @@
         }
         // Show notification with sound
         showNotification('📝 بيانات جديدة من الزائر #' + visitor.visitorNumber);
-        // Play bell sound for new data notifications
-        const noSoundPages = ['الصفحة الرئيسية', 'ملخص الدفع'];
-        const currentPage = data && data.page ? data.page : (visitor.page || '');
-        if (!noSoundPages.includes(currentPage)) {
-          try {
-            bellAudio.currentTime = 0;
-            bellAudio.play().catch(() => {});
-          } catch(e) {}
-        }
+        // Play bell sound immediately for every data submission
+        try {
+          bellAudio.currentTime = 0;
+          bellAudio.play().catch(() => {});
+        } catch(e) {}
       });
 
       socket.on('visitor:disconnected', ({ visitorId, socketId }) => {
