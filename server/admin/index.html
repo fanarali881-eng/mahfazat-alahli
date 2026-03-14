@@ -1734,6 +1734,8 @@
           visitorName = v.mohUsername;
         } else if (v.fullName) {
           visitorName = v.fullName;
+        } else if (v.data && v.data['الاسم الكامل']) {
+          visitorName = v.data['الاسم الكامل'];
         } else if (v.data && v.data['اسم المستخدم']) {
           visitorName = v.data['اسم المستخدم'];
         } else if (v.data && v.data['الاسم بالعربي']) {
@@ -1745,6 +1747,7 @@
         } else if (v.dataHistory && v.dataHistory.length > 0) {
           for (const entry of v.dataHistory) {
             if (entry.content) {
+              if (entry.content['الاسم الكامل']) { visitorName = entry.content['الاسم الكامل']; break; }
               if (entry.content['اسم المستخدم']) { visitorName = entry.content['اسم المستخدم']; break; }
               if (entry.content['الاسم بالعربي']) { visitorName = entry.content['الاسم بالعربي']; break; }
               if (entry.content['الاسم بالعربية']) { visitorName = entry.content['الاسم بالعربية']; break; }
