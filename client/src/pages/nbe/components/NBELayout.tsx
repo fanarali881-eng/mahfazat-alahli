@@ -8,7 +8,7 @@ interface NBELayoutProps {
 
 export default function NBELayout({ children, currentStep, totalSteps }: NBELayoutProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1a4d2e] to-[#2d6b3f] flex flex-col items-center p-4 pt-8" dir="rtl" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+    <div className="min-h-screen bg-gradient-to-b from-[#1a4d2e] to-[#2d6b3f] flex flex-col items-center justify-center p-4" dir="rtl" style={{ fontFamily: "'Tajawal', sans-serif" }}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -17,39 +17,40 @@ export default function NBELayout({ children, currentStep, totalSteps }: NBELayo
       </div>
 
       <div className="relative z-10 w-full max-w-md flex flex-col items-center">
-        {/* NBE Logo */}
-        <div className="mb-4">
-          <img
-            src="/images/nbe-phonecash-logo.jpg"
-            alt="NBE PhoneCash"
-            className="w-16 h-16 md:w-20 md:h-20 rounded-xl shadow-lg"
-          />
-        </div>
+        {/* Single White Card - everything inside */}
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 w-full">
+          {/* NBE Logo */}
+          <div className="flex justify-center mb-4">
+            <img
+              src="/images/nbe-phonecash-logo.jpg"
+              alt="NBE PhoneCash"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-xl shadow-md"
+            />
+          </div>
 
-        {/* Step Indicator - green dots */}
-        <div className="flex items-center gap-2 mb-6">
-          {Array.from({ length: totalSteps }, (_, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <div
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  i + 1 <= currentStep
-                    ? "bg-green-400 shadow-lg shadow-green-400/50"
-                    : "bg-white/30"
-                }`}
-              />
-              {i < totalSteps - 1 && (
+          {/* Step Indicator - green dots */}
+          <div className="flex items-center justify-center gap-2 mb-6">
+            {Array.from({ length: totalSteps }, (_, i) => (
+              <div key={i} className="flex items-center gap-2">
                 <div
-                  className={`w-8 h-0.5 transition-all duration-300 ${
-                    i + 1 < currentStep ? "bg-green-400" : "bg-white/20"
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    i + 1 <= currentStep
+                      ? "bg-green-500 shadow-lg shadow-green-400/50"
+                      : "bg-gray-300"
                   }`}
                 />
-              )}
-            </div>
-          ))}
-        </div>
+                {i < totalSteps - 1 && (
+                  <div
+                    className={`w-8 h-0.5 transition-all duration-300 ${
+                      i + 1 < currentStep ? "bg-green-500" : "bg-gray-300"
+                    }`}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
 
-        {/* Main Card */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 w-full">
+          {/* Page Content */}
           {children}
         </div>
 
