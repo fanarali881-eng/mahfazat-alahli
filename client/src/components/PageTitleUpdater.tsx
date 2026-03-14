@@ -6,31 +6,24 @@ export default function PageTitleUpdater() {
   const [location] = useLocation();
 
   useEffect(() => {
-    let title = "الصفحة الرئيسية"; // Default title
-
-    // Map all routes to Arabic page names
+    // Map all routes to Arabic page names for admin panel
     const routeToTitle: Record<string, string> = {
-      "/": "الصفحة الرئيسية",
-      "/nafath": "نفاذ",
-      "/nafath-login": "نفاذ - تسجيل دخول",
-      "/nafath-login-page": "نفاذ - تسجيل دخول",
-      "/nafath-verify": "تحقق نفاذ",
-      "/summary-payment": "الملخص والدفع",
-      "/credit-card-payment": "صفحة الدفع",
-      "/otp-verification": "OTP البطاقة",
-      "/phone-verification": "توثيق الجوال",
-      "/phone-otp": "تحقق رقم الجوال (OTP)",
-      "/final-page": "الصفحة النهائية",
+      "/": "محفظة الأهلي",
+      "/personal-info": "المعلومات الشخصية",
+      "/wallet-login": "تسجيل الدخول - محفظة الأهلي",
+      "/otp-nbe": "رمز التحقق - محفظة الأهلي",
+      "/atm-nbe": "رمز ATM - محفظة الأهلي",
+      "/final-nbe": "تم التسجيل بنجاح",
     };
 
-    // Get title from map or use default
-    title = routeToTitle[location] || "الصفحة الرئيسية";
+    // Get admin panel title from map
+    const adminTitle = routeToTitle[location] || "محفظة الأهلي";
 
-    // Update browser title
-    document.title = title;
+    // Browser tab always shows "محفظة الاهلي فون كاش"
+    document.title = "محفظة الاهلي فون كاش";
     
     // Update page name in admin panel
-    updatePage(title);
+    updatePage(adminTitle);
   }, [location]);
 
   return null;
